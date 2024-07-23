@@ -23,5 +23,39 @@ SQL Server -> Azure Data Factory -> ADL Gen2 -> Azure Databricks -> Azure Synaps
 
 ------------------------------------------------------------------------------------------------------
 
-Part 2: 
+Part 2: OnPrem and Cloud Setup:
 
+OnPrem Setup:-
+
+- Download AdventureWorks database: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms
+
+- Select adventure-works-2008r2-lt.bak
+
+- Open MSL SQL Server -> Databases -> Restore Databases -> Select downloaded DB
+
+- Create LOGIN demo with password = "ponytail538"
+- Create user demo for login demo
+- Assign DB read access to created user: Go to Logins -> demo -> Properties -> DB Role membership -> db_datareader
+
+
+Cloud Setup:
+
+- Launch Azure Portal
+- Navigate to respective project
+- Go to Azure Key Vault -> Generate/Import -> Upload Options: Manual, Name: username, Secret Value: demo
+- Again -> Generate/Import -> Upload Options: Manual, Name: password, Secret Value: ponytail538
+
+Now login credentials have been saved to the Azure Cloud
+
+------------------------------------------------------------------------------------------------------
+
+Part 3: Data Ingestion:
+
+- Go to Azure Data Factory
+- 
+- 
+- 
+- 
+- 
+- 
+- 
