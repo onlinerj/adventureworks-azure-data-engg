@@ -53,9 +53,9 @@ Part 3: Data Ingestion: Building the data injection pipeline
 
 - Go to Azure Data Factory
 - Establish connection between the Azure Data Factory and On Prem SQL server
-- 
-- 
-- 
+- Go to Data Factory -> Manage - Integration Runtimes
+- Select new self hosted Azure runtime, name it selfHostedIR
+- Click Option 1: Launch Express Setup on this computer
 - 
 - 
 - 
