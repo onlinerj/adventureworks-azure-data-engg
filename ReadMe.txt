@@ -49,10 +49,10 @@ Now login credentials have been saved to the Azure Cloud
 
 ------------------------------------------------------------------------------------------------------
 
-Part 3: Data Ingestion:
+Part 3: Data Ingestion: Building the data injection pipeline
 
 - Go to Azure Data Factory
-- 
+- Establish connection between the Azure Data Factory and On Prem SQL server
 - 
 - 
 - 
