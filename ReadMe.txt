@@ -56,6 +56,10 @@ Part 3: Data Ingestion: Building the data injection pipeline
 - Go to Data Factory -> Manage - Integration Runtimes
 - Select new self hosted Azure runtime, name it selfHostedIR
 - Click Option 1: Launch Express Setup on this computer
+- Launch Microsoft Integration Runtime on the PC: Check for vonnected to cloud service with green tick at bottom
+- ADF -> Author -> + Sign -> Pipeline -> Pipeline -> Name it picopytables
+- Activities -> Lookup -> Drag and Drop to Workspace
+- 
 - 
 - 
 - 
