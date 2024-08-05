@@ -94,10 +94,30 @@ Part 3: Data Ingestion: Building the data injection pipeline
 Part 4: Data Transformation on Azure Databricks
 
 - Go to Azure Databricks Service -> launch workspace
-- 
-- 
-- 
-- 
+- Go to compute to create a compute cluster
+- Rename to Data_Transform_Cluster
+- Choose single mode -> Leave Databricks runtime as default
+- Terminate after 15 minutes of inactivity to save money -> Create compute
+- Go to workspace -> Workspace -> Shared -> Right click on canvas -> Create -> Notebook (will help to mount Azure Data Factory) -> Make sure language is python
+- Rename notebook to mountADF
+- Click connect at top right -> select Data_Transform_Cluster
+- Go to Advanced Options -> Check Enable credential passthrough for user level access
+- Go to notebook, use below link to help mount ADLS: using credential passthrough
+https://learn.microsoft.com/en-us/azure/databricks/archive/credential-passthrough/adls-passthrough
+- Get the python code from MS Learn website, and paste in notebook
+- Replace <container-name> in the code with actual name, eg:
+source = "abfss://layer-1@adlsgen2demo.dfs.core.windows.net/"
+- Replace <mount-name> with storage account name, eg:
+mount_point = "/mnt/layer-1"
+- Check for green dot to check if cluster is connected
+- Click Run all: check for output, should be "True".
+- Write below code to test tables mounted earlier:
+dbutils.fs.ls("/mnt/layer-1")
+- Run it, if it returns operation failed, then appropriate permissions are not granted.
+- Go to Azure Storage Account -> click on Access Control (IAM) -> Role Assignments -> Check your username -> Roles Tab -> Storage Blob Data Contributor -> Members -> Select Members -> Check your name -> Click Select - review + assign
+- Get back to Databricks and Run second cell, check if it returns the tables list.
+- Copy code form cell 1, change source and mount point form layer-1 to layer-2.
+- Go to MS SQL Server -> Open relevant table (Sales.T.Address)-> 
 
 ------------------------------------------------------------------------------------------------------
 
