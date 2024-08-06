@@ -19,7 +19,7 @@ ETL:-
 Part 1: Project Overview:
 
 Source -> Ingestion -> Preparation (Layer 1 & 2) -> Transformation -> Loading -> Reporting
-SQL Server -> Azure Data Factory -> ADL Gen2 -> Azure Databricks -> Azure Synapse Analytics -> PowerBI
+SQL Server -> Azure Data Factory -> ADLS Gen2 -> Azure Databricks -> Azure Synapse Analytics -> PowerBI
 
 ------------------------------------------------------------------------------------------------------
 
@@ -117,14 +117,27 @@ dbutils.fs.ls("/mnt/layer-1")
 - Go to Azure Storage Account -> click on Access Control (IAM) -> Role Assignments -> Check your username -> Roles Tab -> Storage Blob Data Contributor -> Members -> Select Members -> Check your name -> Click Select - review + assign
 - Get back to Databricks and Run second cell, check if it returns the tables list.
 - Copy code form cell 1, change source and mount point form layer-1 to layer-2.
-- Go to MS SQL Server -> Open relevant table (Sales.T.Address)-> 
+- To know what needs to be transformed, Go to MS SQL Server -> Open relevant table (Sales.T.Address)-> Transform dates from datetime format to date format
+- Write and execute data transformation to all SalesLT tables
+- Use query display(df) to check result, dates should be transformed
+- To establish connection between azure databricks and azure data factory, go the pipeline, go to manage create a linked service, search for compute -> databricks, name it Databrickslinkedserv -> Select AutoresolveIntegrationRuntime -> select azure subscription and databricks workspace -> Use existing interactive cluster -> Click Access Token
+- Go to Databricks -> User Settings -> Access Tokens -> Manage -> Generate New Token -> Generate with default options -> Copy and paste access token in Azure Kay Vault -> Secrets -> Create a secret -> Name: DBaccesstoken -> Secret Value: Paste Key -> Click create
+- Go back to creating linked services -> Select Azure Key Vault Linked Service -> Fill all options -> Test Connection and create -> Publish All
+- Go back to pipelines -> In activities, search for Notebook -> drag and drop databricks notebook to canvas -> change notebook name: layer-1 to layer-2.
+- Go to Azure Databricks tab and select linked service
+- Go to Settings tab and select notebook path (browse -> path -> layer-1 to layer-2 -> OK)
+- Join the ForEach activity to Notebook activity by dragging the arrow on canvas
+- Test Connection by using add trigger -> trigger now
+- Go to monitor tab to monitor pipeline run and see if everything succeeded
 
 ------------------------------------------------------------------------------------------------------
 
 Part 5: Data Loading
 
-- Go to Azure Databricks Service -> launch workspace
-- 
+***Note: Azure Synapse analytics is a combination of Azure Data Factory and Azure Databricks. Anything possible with ADF and ADB can be achieved with Azure Synapse Analytics 
+
+- Go to Synapse Analytics Workspace -> Open Synapse Studio -> Data -> + Sign -> Create SQL Database -> Select Serverless (Only Compute/Lower Workloads), Dedicated is Both Compute and Storage/Higher Workloads.
+- Name Database layer-2_db
 - 
 - 
 - 
