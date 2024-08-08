@@ -134,31 +134,40 @@ dbutils.fs.ls("/mnt/layer-1")
 
 Part 5: Data Loading
 
-***Note: Azure Synapse analytics is a combination of Azure Data Factory and Azure Databricks. Anything possible with ADF and ADB can be achieved with Azure Synapse Analytics 
+***Note: Azure Synapse analytics is a combination of Azure Data Factory and Azure Databricks. Anything possible with ADF and ADB can be achieved with Azure Synapse Analytics; Develop and Data are not there in ADF
 
 - Go to Synapse Analytics Workspace -> Open Synapse Studio -> Data -> + Sign -> Create SQL Database -> Select Serverless (Only Compute/Lower Workloads), Dedicated is Both Compute and Storage/Higher Workloads.
 - Name Database layer-2_db
-- 
-- 
-- 
+- Under Linked Section, containers in Azure storage account/ADLS are already mounted by default
+- Go to linked -> layer-2, CustomerAddress Table -> Select TOP 100 rows -> File Type = Delta Format
+- A Query will open up, replace TOP 100 * with * to query whole table, switch use database from Master to later8_db and click RUN
+- Run queries for all Tables so that they are listed under views section
 
 ------------------------------------------------------------------------------------------------------
 
 Part 6: Data Reporting
 
-- 
-- 
-- 
-- 
-- 
+- Launch PowerBI Desktop App
+- Get Data -> Azure Synapse Analytics SQL
+- Go get server URL, go Azure Synapse Workspace -> Properties -> Serverless SQL Endpoint -> Copy and Paste in PowerBI
+- Name Database: layer2_db
+- Data connectivity mode: Import
+- Sign in with Microsoft Account Credentials
+- Check all tables and click load
+- Report View: Dashboards, Table View: Tables, Model View: Relationship between Tables
+- Go to Relationship, PowerBI will have automatically created relationship between the tables
+- New relationships can be created through drag and drop or by going to manage relationships
+- Use PowerBI AI tool to create visual, double click the screen, ask AI tool a question to create report
+- Use PowerBI Visualization tools to create remaining visuals
 
 ------------------------------------------------------------------------------------------------------
 
 Part 7: End to End Pipeline Testing
 
-- 
-- 
-- 
-- 
-- 
+- For end to end testing, go to ADF -> Add trigger -> New Trigger -> Name it trigger_schedule, Type: Schedule, Set Start Date and Time Zone
+- Set Recurrence time to once a day (or as required)
+- Check progress on monitor tab
+- Refresh PowerBI to see results
+- If PowerBI dashboard is updated, the pipeline works end to end.
 
+------------------------------------------------------------------------------------------------------
